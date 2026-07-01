@@ -1,5 +1,5 @@
 import os
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, render_template
 import requests
 
 app = Flask(__name__)
@@ -32,7 +32,7 @@ sessions = {}
 
 @app.route('/')
 def home():
-    return {"message": "FaithGuide AI Engine (Flask-Native) activo.", "status": "Online"}
+    return render_template('index.html')
 
 @app.route('/ask', methods=['GET'])
 def ask_ai():

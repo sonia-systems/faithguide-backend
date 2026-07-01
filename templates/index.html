@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FaithGuide AI - Mentor Virtual</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="chat-container">
+        <header class="chat-header">
+            <div class="avatar">✨</div>
+            <div>
+                <h1>FaithGuide AI</h1>
+                <p>Tu mentor del Oratorio Salesiano</p>
+            </div>
+        </header>
+
+        <main class="chat-box" id="chatBox">
+            <div class="message ai-message">
+                ¡Hola, campeón/a! 👋 Soy FaithGuide AI. Estoy aquí para escucharte, acompañarte y conversar de lo que tú quieras, sin juzgarte. ¿Cómo va tu día?
+            </div>
+        </main>
+
+        <form class="chat-input-area" id="chatForm">
+            <input type="text" id="userInput" placeholder="Escribe un mensaje o desahógate aquí..." required autocomplete="off">
+            <button type="submit">Enviar</button>
+        </form>
+    </div>
+
+    <script src="{{ url_for('static', filename='app.js') }}"></script>
+</body>
+</html>
