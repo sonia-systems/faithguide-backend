@@ -15,24 +15,27 @@ chatForm.addEventListener('submit', async (e) => {
     appendMessage(text, 'user-message');
     userInput.value = '';
     
+    // Guardamos la posición antes de que responda la IA
+    chatBox.scrollTop = chatBox.scrollHeight;
+    
     // 2. Crear una burbuja de "pensando..." de la IA
     const loadingMessage = appendMessage('Escribiendo...', 'ai-message');
-    chatBox.scrollTop = chatBox.scrollHeight;
 
     try {
         // 3. Llamamos a nuestro endpoint de Flask
         const response = await fetch(`/ask?session_id=${sessionId}&question=${encodeURIComponent(text)}`);
         const data = await response.json();
         
-        // Mostramos la respuesta real quitando el texto de carga
+        // Mostramos la respuesta real de la IA
         loadingMessage.textContent = data.ai_response || "Lo siento, tuve un pequeño problema con mi conexión.";
+        
+        // NOTA: Eliminamos por completo la línea de chatBox.scrollTop = chatBox.scrollHeight;
+        // De esta forma, el navegador no moverá la pantalla para nada cuando llegue el texto.
+        
     } catch (error) {
         loadingMessage.textContent = "¡Ups! Ocurrió un error al intentar conectarme con el servidor.";
         console.error(error);
     }
-    
-    // Auto-scroll hacia abajo
-    chatBox.scrollTop = chatBox.scrollHeight;
 });
 
 function appendMessage(text, className) {
